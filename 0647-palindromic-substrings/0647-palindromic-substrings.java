@@ -10,7 +10,7 @@ class Solution {
         }
         return res;
     } 
-    int findP(String s,int l,int r,int n){
+    public int findP(String s,int l,int r,int n){
         int count =0;
         
         
