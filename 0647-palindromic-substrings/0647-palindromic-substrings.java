@@ -1,25 +1,29 @@
 class Solution {
     public int countSubstrings(String s) {
-        int count = 0;
-        for (int i = 0; i < s.length(); i ++) {
-            int left = i, right = i;
-            count += process(s, i, i);
-            if (i < s.length() - 1) {
-                count += process(s, i, i + 1);
-            }
+        
+        int n = s.length();
+        int res =0;
+        
+        for(int i=0;i<n;i++){
+        res += findP(s,i,i,n);
+        res += findP(s,i,i+1,n);
         }
-        return count;
-    }
-    private int process(String s, int left, int right) {
-        int count = 0;
-        while (left >= 0 && right < s.length()) {
-            if (s.charAt(left) != s.charAt(right)) {
+        return res;
+    } 
+    int findP(String s,int l,int r,int n){
+        int count =0;
+        
+        
+        while(l>=0 && r<n){
+            if(s.charAt(l) == s.charAt(r)){
+                l--;
+                r++;
+                count++;
+            }else{
                 break;
             }
-            count ++;
-            left --;
-            right ++;
         }
         return count;
     }
 }
+
