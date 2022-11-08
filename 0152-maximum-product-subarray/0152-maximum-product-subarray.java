@@ -3,6 +3,7 @@ class Solution {
         int n = nums.length;
         int result = nums[0];
         
+        // Time Complexity - O(n2)
         for(int i=0;i<n;i++){
             int product = 1;
             for(int j=i;j<n;j++){
