@@ -1,5 +1,7 @@
 class Solution {
     public int peakIndexInMountainArray(int[] arr) {
+        // BINARY SEARCH
+        /*
         int left =0;
         int right = arr.length - 1;
         
@@ -12,5 +14,14 @@ class Solution {
             }
         }
         return right;
+        */
+        
+        // SECOND METHOD
+        for(int i=1;i<arr.length;i++){
+            if(arr[i-1] < arr[i]  && arr[i] > arr[i+1]){
+                return i;
+            }
+        }
+        return 0;
     }
 }
