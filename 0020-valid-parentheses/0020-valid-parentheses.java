@@ -1,29 +1,25 @@
 class Solution {
     public boolean isValid(String s) {
-        int length = s.length();
-        char[] s1 = s.toCharArray();
-        if(length==0)
-            return true;
-        Stack<Character> stack = new Stack<>();
-        
-    for(int i=0;i<length;i++){
-        if(s1[i]=='(' || s1[i]=='[' || s1[i]=='{'){
-            stack.push(s1[i]);
+      Stack<Character> leftSymbols = new Stack<>();
+        // Loop for each character of the string
+        for (char c : s.toCharArray()) {
+            // If left symbol is encountered
+            if (c == '(' || c == '{' || c == '[') {
+                leftSymbols.push(c);
+            }
+            // If right symbol is encountered
+            else if (c == ')' && !leftSymbols.isEmpty() && leftSymbols.peek() == '(') {
+                leftSymbols.pop();
+            } else if (c == '}' && !leftSymbols.isEmpty() && leftSymbols.peek() == '{') {
+                leftSymbols.pop();
+            } else if (c == ']' && !leftSymbols.isEmpty() && leftSymbols.peek() == '[') {
+                leftSymbols.pop();
+            }
+            // If none of the valid symbols is encountered
+            else {
+                return false;
+            }
         }
-        else if(!stack.empty() && s1[i]==')' && stack.peek()=='('){
-            stack.pop();
-        }
-        else if(!stack.empty() && s1[i]==']' && stack.peek()=='['){
-            stack.pop();
-        }
-        else if(!stack.empty() && s1[i]=='}' && stack.peek()=='{'){
-            stack.pop();
-        }
-        else {
-            return false;
-        }
-    }
-        
-        return stack.empty();
+        return leftSymbols.isEmpty();
    }
 }
